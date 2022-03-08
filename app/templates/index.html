@@ -1,1 +1,12 @@
-<h1>Hello World</h1>
+{% extends 'base.html' %}
+
+<!-- Styles block -->
+{% block styles %}
+{{ super () }}
+
+{% endblock %}
+
+<!-- Content block -->
+{% block content %}
+  <h1>Hello World</h1>
+{% endblock %}
