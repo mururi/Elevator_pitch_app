@@ -1,3 +1,5 @@
+import os
+
 class Config:
     '''
     General configuration parent class
@@ -5,7 +7,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mururi:sqlpass@localhost/pitch'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 class ProdConfig(Config):
     '''
