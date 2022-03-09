@@ -1,9 +1,10 @@
 from turtle import title
-from flask import render_template, request, redirect, url_for, abort
+from unicodedata import category
+from flask import render_template, request, redirect, url_for, abort, flash
 from ..models import User, Pitch
 from . import main
-from flask_login import login_required
-from .forms import UpdateProfile
+from flask_login import login_required, current_user
+from .forms import UpdateProfile, NewPitch
 from .. import db
 
 # Views
@@ -44,6 +45,30 @@ def update_profile(uname):
         return redirect(url_for('.profile',uname=user.username))
 
     return render_template('profile/update.html',form =form)
+
+
+@main.route('/new-pitch', methods = ['GET', 'POST'])
+@login_required
+def new_pitch():
+    form = NewPitch()
+
+    if form.validate_on_submit():
+        category = form.category.data
+        content = form.content.data
+        author = current_user.id
+        # downvotes = 0
+        # upvotes = 0
+
+        pitch = Pitch(category=category, content=content, author=author)
+
+        db.session.add(pitch)
+        db.session.commit()
+
+        flash('Pitch Created', category = 'success')
+        return redirect(url_for('main.index'))
+
+    return render_template('new_pitch.html', new_pitch_form = form)
+
 
 # @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
 # @login_required
