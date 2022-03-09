@@ -1,3 +1,54 @@
-.navbar--shadow {
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #043149;
+}
+
+/* navbar styling */
+.navbar--styling {
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  background-color: #fff;
+}
+
+a.nav-link {
+  color: #ef4020;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+a.nav-link.active {
+  color: #043149;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+/* sidebar styles */
+#sidebar {
+  width: 270px;
+}
+
+@media (min-width: 992px) {
+  body {
+    overflow: auto !important;
+  }
+
+  main {
+    margin-left: 270px;
+    background-color: #fafafa;
+    min-height: calc(100vh - 56px);
+    padding: 30px;
+  }
+
+  .offcanvas-backdrop::before {
+    display: none;
+  }
+
+  #sidebar {
+    transform: none;
+    visibility: visible !important;
+    top: 56px;
+    height: calc(100% - 56px);
+    z-index: -1;
+  }
 }
