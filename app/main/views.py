@@ -1,6 +1,6 @@
 from turtle import title
 from flask import render_template, request, redirect, url_for, abort
-from ..models import User
+from ..models import User, Pitch
 from . import main
 from flask_login import login_required
 from .forms import UpdateProfile
