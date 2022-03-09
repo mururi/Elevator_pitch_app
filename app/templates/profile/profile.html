@@ -16,6 +16,15 @@
     {% if user == current_user %}
     <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
     {% endif %}
+
+    <!-- Display User Pitches -->
+    {% for pitch in pitches %}
+    <div>
+      <p>{{ pitch.content }}</p>
+      <a href="/user/{{ pitch.user.username }}">{{ pitch.user.username | title }}</a>
+    </div>
+    {% endfor %}
+
   </div>
 
 </div>

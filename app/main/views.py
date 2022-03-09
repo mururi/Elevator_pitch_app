@@ -15,7 +15,9 @@ def index():
     View root page function that returns the index page and its data
     '''
     title = 'Elevator Pitch'
-    return render_template('index.html', title = title)
+    pitches = Pitch.query.all()
+
+    return render_template('index.html', title = title, pitches = pitches)
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -24,7 +26,8 @@ def profile(uname):
     if user is None:
         abort(404)
 
-    return render_template("profile/profile.html", user = user)
+    pitches = user.pitches
+    return render_template("profile/profile.html", user = user, pitches = pitches)
 
 
 @main.route('/user/<uname>/update',methods = ['GET','POST'])
