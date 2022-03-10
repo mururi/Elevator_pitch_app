@@ -25,6 +25,9 @@ a.nav-link.active {
   font-size: 1.2rem;
 }
 
+a.nav-link:hover {
+  color: #043149;
+}
 /* sidebar styles */
 #sidebar {
   width: 270px;

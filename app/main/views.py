@@ -1,10 +1,12 @@
+from crypt import methods
 from turtle import title
 from unicodedata import category
+from xml.etree.ElementTree import Comment
 from flask import render_template, request, redirect, url_for, abort, flash
-from ..models import User, Pitch
+from ..models import User, Pitch, Comment
 from . import main
 from flask_login import login_required, current_user
-from .forms import UpdateProfile, NewPitch
+from .forms import NewComment, UpdateProfile, NewPitch
 from .. import db
 
 # Views
@@ -59,20 +61,32 @@ def new_pitch():
         category = form.category.data
         content = form.content.data
         author = current_user.id
-        # downvotes = 0
-        # upvotes = 0
+    
 
         pitch = Pitch(category=category, content=content, author=author)
 
         db.session.add(pitch)
         db.session.commit()
 
-        flash('Pitch Created', category = 'success')
+        # flash('Pitch Created', category = 'success')
         return redirect(url_for('main.index'))
 
     return render_template('new_pitch.html', new_pitch_form = form)
 
+@main.route('/new-comment/<pitch_id>', methods = ['GET', 'POST'])
+@login_required
+def new_comment(pitch_id):
+    form = NewComment()
 
-# @main.route('/movie/review/new/<int:id>', methods = ['GET','POST'])
-# @login_required
-# def new_review(id):
+    if form.validate_on_submit():
+        content = form.content.data
+        author = current_user.id
+
+        comment = Comment(content=content, author=author, pitch_id=pitch_id)
+
+        db.session.add(comment)
+        db.session.commit()
+
+        return redirect(url_for('main.index'))
+
+    return render_template('new_comment.html', new_comment_form = form, pitch_id = pitch_id)
