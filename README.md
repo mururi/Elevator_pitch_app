@@ -47,15 +47,15 @@ To run this app locally, you need a PC with the following installed:
 3. Go to the project root directory and install the virtualenv library using pip an afterwards create a virtual environment. Run the following commands to do so:
 
     ```bash
-      pip install virtualenv
-    ```
-
-    ```bash
-      virtualenv virtual
+      python3 -m venv --without-pip virtual 
     ```
 
     ```bash
       source virtual/bin/activate
+    ```
+
+    ```bash
+      curl https://bootstrap.pypa.io/get-pip.py | python
     ```
  
 4. Download the all dependencies in the requirements.txt using
