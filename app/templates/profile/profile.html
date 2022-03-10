@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% import 'macros.html' as macro %}
 
 {% block content %}
 <div class="container">
@@ -18,15 +19,11 @@
     {% endif %}
 
     <!-- Display User Pitches -->
-    {% for pitch in pitches %}
-    <div>
-      <p>{{ pitch.content }}</p>
-      <a href="/user/{{ pitch.user.username }}">{{ pitch.user.username | title }}</a>
-    </div>
-    {% endfor %}
+    
 
   </div>
 
 </div>
+{{ macro.displayPitches(pitches) }}
 </div>
 {% endblock %}
