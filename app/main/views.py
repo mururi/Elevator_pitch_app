@@ -1,7 +1,3 @@
-from crypt import methods
-from turtle import title
-from unicodedata import category
-from xml.etree.ElementTree import Comment
 from flask import render_template, request, redirect, url_for, abort, flash
 from sqlalchemy import case
 from ..models import User, Pitch, Comment
