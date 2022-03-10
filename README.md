@@ -5,7 +5,7 @@
 ## Description 
 This is a flask web app that allows users to view pitches from different categories, comment on them and post pitches. 
 
-![Elevator Pitch App](app/static/daily_planet.png)
+![Elevator Pitch App](app/static/elevator_pitch_app.png)
 
 ## How to Use
 ### Requirements
@@ -16,7 +16,7 @@ This is a flask web app that allows users to view pitches from different categor
 Ensure that your device of choice has a browser installed.
 Click the link provided below to view the site.
 
-https://.herokuapp.com/
+https://elevator-pitch-app.herokuapp.com/
 
 ### Using the App
 The user can navigate the web app easily and be able to:
