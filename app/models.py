@@ -18,6 +18,7 @@ class User(UserMixin, db.Model):
     bio = db.Column(db.String(255))
     pass_secure = db.Column(db.String(255))
     pitches = db.relationship('Pitch', backref = 'user', lazy = "dynamic")
+    comments = db.relationship('Comment', backref = 'user', lazy = "dynamic")
 
     @property
     def password(self):
@@ -43,6 +44,18 @@ class Pitch(db.Model):
     upvotes = db.Column(db.Integer, default = 0)
     downvotes = db.Column(db.Integer, default = 0)
     author = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.relationship('Comment', backref = 'pitch', lazy = "dynamic")
 
     def __repr__(self):
         return f'{self.category}'
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+    id = db.Column(db.Integer, primary_key = True)
+    content = db.Column(db.String())
+    date_created = db.Column(db.DateTime(timezone = True), default = func.now())
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
+    author = db.Column(db.Integer, db.ForeignKey('users.id'))
+
+    def __repr__(self):
+        return f'{self.content}'
