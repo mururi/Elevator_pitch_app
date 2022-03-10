@@ -5,7 +5,7 @@
 ## Description 
 This is a flask web app that allows users to view pitches from different categories, comment on them and post pitches. 
 
-![Daily Planet Web App](app/static/daily_planet.png)
+![Elevator Pitch App](app/static/daily_planet.png)
 
 ## How to Use
 ### Requirements
