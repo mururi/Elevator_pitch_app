@@ -19,7 +19,11 @@
       <hr>
       <div class="col-12 d-flex justify-content-between">
         <p class="text-muted">Category: {{ pitch.category }}</p>
+        
+        {% if current_user.is_authenticated %}
         <a href="/new-comment/{{ pitch.id }}" class="btn text-center btn--styling">Comment</a>
+        {% endif %}
+        
         <div class="d-flex">
           <div class="mx-2"><i class="bi bi-hand-thumbs-up">    {{ pitch.upvotes }}</i></div>
           <div class="mx-2"><i class="bi bi-hand-thumbs-down">    {{ pitch.downvotes }}</i></div>
