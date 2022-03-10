@@ -97,6 +97,14 @@ def view_category(category):
     full_category = ''
     if (category == 'interview'):
         full_category = 'Interview Pitch'
+    elif (category == 'business'):
+        full_category = 'Business Pitch'
+    elif (category == 'promotion'):
+        full_category = 'Promotion Pitch'
+    elif (category == 'product'):
+        full_category = 'Product Pitch'
+    elif (category == 'pickup'):
+        full_category = 'Pickup Lines'
 
     pitches = Pitch.query.filter_by(category = full_category)
 
