@@ -3,6 +3,7 @@ from turtle import title
 from unicodedata import category
 from xml.etree.ElementTree import Comment
 from flask import render_template, request, redirect, url_for, abort, flash
+from sqlalchemy import case
 from ..models import User, Pitch, Comment
 from . import main
 from flask_login import login_required, current_user
@@ -90,3 +91,13 @@ def new_comment(pitch_id):
         return redirect(url_for('main.index'))
 
     return render_template('new_comment.html', new_comment_form = form, pitch_id = pitch_id)
+
+@main.route('/category/<category>')
+def view_category(category):
+    full_category = ''
+    if (category == 'interview'):
+        full_category = 'Interview Pitch'
+
+    pitches = Pitch.query.filter_by(category = full_category)
+
+    return render_template('category.html', pitches=pitches)
